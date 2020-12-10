@@ -6,11 +6,9 @@ from apache_beam.options.pipeline_options import GoogleCloudOptions
 from apache_beam.options.pipeline_options import WorkerOptions
 from apache_beam.io.gcp.internal.clients import bigquery
 from apache_beam.pvalue import AsList
-
 import logging
 import json
 import argparse
-import sys
 
 
 def process_artists(row, gender, area):
@@ -131,7 +129,6 @@ def main():
     if not worker_options.use_public_ips:
         worker_options.use_public_ips = False
 
-    #table_spec = 'datafusion-dataproc-tutorial:musicbrainz.recordings_by_artists_dataflow'
     table_spec = bigquery.TableReference(projectId=gcp_options.project,
                                          datasetId=args.dataset,
                                          tableId=args.table)
